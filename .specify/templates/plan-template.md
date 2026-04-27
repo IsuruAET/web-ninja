@@ -17,11 +17,11 @@
   the iteration process.
 -->
 
-**Language/Version**: [e.g., Python 3.11, Swift 5.9, Rust 1.75 or NEEDS CLARIFICATION]  
-**Primary Dependencies**: [e.g., FastAPI, UIKit, LLVM or NEEDS CLARIFICATION]  
+**Language/Version**: [e.g., TypeScript 5 / Next.js 16.2.4 or NEEDS CLARIFICATION]  
+**Primary Dependencies**: [e.g., Next.js 16.2.4, React 19.2.4, Tailwind CSS ^4 or NEEDS CLARIFICATION]  
 **Storage**: [if applicable, e.g., PostgreSQL, CoreData, files or N/A]  
-**Testing**: [e.g., pytest, XCTest, cargo test or NEEDS CLARIFICATION]  
-**Target Platform**: [e.g., Linux server, iOS 15+, WASM or NEEDS CLARIFICATION]
+**Testing**: N/A — automated testing is prohibited by constitution (Principle V)  
+**Target Platform**: [e.g., Web (mobile-first, responsive) or NEEDS CLARIFICATION]
 **Project Type**: [e.g., library/cli/web-service/mobile-app/compiler/desktop-app or NEEDS CLARIFICATION]  
 **Performance Goals**: [domain-specific, e.g., 1000 req/s, 10k lines/sec, 60 fps or NEEDS CLARIFICATION]  
 **Constraints**: [domain-specific, e.g., <200ms p95, <100MB memory, offline-capable or NEEDS CLARIFICATION]  
@@ -31,7 +31,11 @@
 
 *GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
 
-[Gates determined based on constitution file]
+- [ ] **I. Clean Code**: Functions single-purpose, no dead code, no narrating comments
+- [ ] **II. Simple UX**: Primary user journey operable without documentation
+- [ ] **III. Responsive Design**: Layouts defined mobile-first; all breakpoints covered
+- [ ] **IV. Minimal Dependencies**: No new runtime deps without recorded justification
+- [ ] **V. No Testing**: Zero test files, no test framework, no test tasks planned
 
 ## Project Structure
 
@@ -56,39 +60,23 @@ specs/[###-feature]/
 -->
 
 ```text
-# [REMOVE IF UNUSED] Option 1: Single project (DEFAULT)
-src/
-├── models/
-├── services/
-├── cli/
+# [REMOVE IF UNUSED] Option 1: Next.js app (DEFAULT for this project)
+app/
+├── (routes)/
+├── components/
+├── lib/
+└── globals.css
+
+public/
+
+# [REMOVE IF UNUSED] Option 2: With dedicated API layer
+app/
+├── (routes)/
+├── api/
+├── components/
 └── lib/
 
-tests/
-├── contract/
-├── integration/
-└── unit/
-
-# [REMOVE IF UNUSED] Option 2: Web application (when "frontend" + "backend" detected)
-backend/
-├── src/
-│   ├── models/
-│   ├── services/
-│   └── api/
-└── tests/
-
-frontend/
-├── src/
-│   ├── components/
-│   ├── pages/
-│   └── services/
-└── tests/
-
-# [REMOVE IF UNUSED] Option 3: Mobile + API (when "iOS/Android" detected)
-api/
-└── [same as backend above]
-
-ios/ or android/
-└── [platform-specific structure: feature modules, UI flows, platform tests]
+# No tests/ directory — automated testing is prohibited by constitution (Principle V)
 ```
 
 **Structure Decision**: [Document the selected structure and reference the real
